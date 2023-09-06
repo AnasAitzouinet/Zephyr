@@ -3,8 +3,9 @@ import Loader from "@/components/Loader";
 import Recent from "@/components/Recent/Recent";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { BASE_URL } from "@/constant";
 const getData = async () => {
-  const res = await fetch(`http://localhost:3000/home`, {
+  const res = await fetch(`${BASE_URL}/home`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

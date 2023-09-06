@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Info from "@/components/Info";
 import Loader from "@/components/Loader";
+import {BASE_URL} from "@/constant"; 
 const getReferrer = async ({ id }: { id: string }) => {
-  const res = await fetch(`http://localhost:3000/watch/anime/${id}`, {
+  const res = await fetch(`${BASE_URL}/watch/anime/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

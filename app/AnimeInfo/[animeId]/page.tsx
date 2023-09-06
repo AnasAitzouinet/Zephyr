@@ -9,6 +9,7 @@ import { RadioGroup } from "@headlessui/react";
 import { ShieldCheckIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
+import { BASE_URL } from "@/constant";
 
 const product = {
   name: "Everyday Ruck Snack",
@@ -35,7 +36,7 @@ function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(" ");
 }
 const getAnime = async ({ animeId }: { animeId: string }) => {
-  const res = await fetch(`http://localhost:3000/watch/anime/info/${animeId}`, {
+  const res = await fetch(`${BASE_URL}/watch/anime/info/${animeId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

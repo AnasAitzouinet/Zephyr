@@ -11,9 +11,10 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import { BASE_URL } from "@/constant";
 
 const getAnime = async ({ animeId }: { animeId: string }) => {
-  const res = await fetch(`http://localhost:3000/watch/anime/info/${animeId}`, {
+  const res = await fetch(`${BASE_URL}/watch/anime/info/${animeId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

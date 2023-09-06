@@ -31,14 +31,16 @@ const categories = [
       "https://tailwindui.com/img/ecommerce-images/home-page-01-category-03.jpg",
   },
 ];
+import { BASE_URL } from "@/constant";
 import jwt from "jsonwebtoken";
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
+
 import Image from "next/image";
 import { useEffect, useState } from "react";
 const getData = async () => {
-  const res = await fetch(`http://localhost:3000/popular`, {
+  const res = await fetch(`${BASE_URL}/popular`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
