@@ -1,6 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import Script from 'next/script'
+
 
 const inter = Montserrat({ subsets: ["latin"] });
 
@@ -16,10 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <script
+      <Script
         async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4666390609904036"
-      ></script>
+        strategy="lazyOnload"
+        crossOrigin="anonymous"
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT}`}
+      />
       <body className={inter.className}>{children}</body>
     </html>
   );
