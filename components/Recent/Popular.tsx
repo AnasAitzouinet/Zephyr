@@ -40,7 +40,7 @@ function classNames(...classes: any) {
 import Image from "next/image";
 import { useEffect, useState } from "react";
 const getData = async () => {
-  const res = await fetch(`${BASE_URL}/popular`, {
+  const res = await fetch(`/popular`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
