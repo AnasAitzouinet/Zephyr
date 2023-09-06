@@ -5,7 +5,7 @@ import Info from "@/components/Info";
 import Loader from "@/components/Loader";
 import {BASE_URL} from "@/constant"; 
 const getReferrer = async ({ id }: { id: string }) => {
-  const res = await fetch(`${BASE_URL}/watch/anime/${id}`, {
+  const res = await fetch(`/watch/anime/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
