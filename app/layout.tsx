@@ -1,8 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import Script from 'next/script'
-
+import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Montserrat({ subsets: ["latin"] });
 
@@ -24,7 +24,10 @@ export default function RootLayout({
         crossOrigin="anonymous"
         src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT}`}
       />
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
