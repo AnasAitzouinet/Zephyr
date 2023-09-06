@@ -36,7 +36,7 @@ function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(" ");
 }
 const getAnime = async ({ animeId }: { animeId: string }) => {
-  const res = await fetch(`${BASE_URL}/watch/anime/info/${animeId}`, {
+  const res = await fetch(`/watch/anime/info/${animeId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
