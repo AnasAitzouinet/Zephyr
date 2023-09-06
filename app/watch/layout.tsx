@@ -30,7 +30,6 @@ const userNavigation = [
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(" ");
 }
-import { usehandleSubmit } from "@/lib/useHandleSubmit";
 
 export default function Example({ children }: WatchLayoutProps) {
   const [search, setSearch] = useState<String>("");
