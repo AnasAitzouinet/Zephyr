@@ -39,6 +39,9 @@ function classNames(...classes: any) {
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import "keen-slider/keen-slider.min.css";
+import { useKeenSlider } from "keen-slider/react";
+
 const getData = async () => {
   const res = await fetch(`/popular`, {
     method: "GET",
@@ -62,63 +65,78 @@ type Data = {
     animeImg: string;
   }[];
 };
+
 const Popular = () => {
   const [data, setData] = useState<Data | null>(null);
   useEffect(() => {
     getData().then((data) => setData(data));
   }, []);
+  const [ref] = useKeenSlider<HTMLDivElement>({
+    breakpoints: {
+      "(min-width: 768px)": {
+        slides: {
+          perView: 4,
+          spacing: 5,
+        },
+        mode: "free-snap",
+      },
+      "(max-width: 767px)": {
+        slides: {
+          perView: 2,
+          spacing: 5,
+        },
+        mode: "free-snap",
+      },
+    },
+    mode: "free-snap",
+    slides: {
+      perView: 5,
+      spacing: 15,
+    },
+  });
+
   if (!data) {
     return <div>Loading...</div>;
   }
+
   return (
-    <section
-      aria-labelledby="category-heading"
-      className="py-5 sm:py-10 xl:mx-auto xl:max-w-7xl xl:px-8"
-    >
+    <section className="py-5 sm:py-10 xl:mx-auto xl:max-w-7xl xl:px-8">
       <div className="px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 xl:px-0">
         <h2
           id="category-heading"
           className="text-2xl font-bold tracking-tight text-gray-100"
         >
-          Shop by Category
+          Popular
         </h2>
       </div>
-
-      <div className="mt-4 flow-root ">
-        <div className="-my-2">
-          <div className="relative box-content h-80 overflow-x-auto py-5  xl:px-2">
-            <div className="min-w-screen-xl absolute flex space-x-8 px-4 sm:px-6 lg:px-8  ">
-              {data.animelist.map((category) => (
-                <a
-                  key={category.animeId}
-                  href={`/AnimeInfo/${category.animeId}`	}
-                  className="relative flex h-80 w-56 flex-col overflow-hidden rounded-lg 
-                  border-1 border-gray-700 shadow-lg hover:shadow-2xl transition duration-300 ease-in-out
-                  p-6 hover:scale-105  xl:w-auto"
-                >
-                  <span aria-hidden="true" className="absolute inset-0">
-                    <Image
-                      width={300}
-                      height={400}
-                      src={category.animeImg}
-                      alt=""
-                      className="h-full w-full object-cover object-center"
-                    />
-                  </span>
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"
-                  />
-                  <span className="relative mt-auto text-center text-xl font-bold text-white">
-                    {category.animeTitle.length > 20
-                      ? category.animeTitle.slice(0, 20) + "..."
-                      : category.animeTitle}
-                  </span>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
+      <div ref={ref} className="keen-slider py-5 ">
+        {data.animelist.map((category) => (
+          <a
+            key={category.animeId}
+            href={`/AnimeInfo/${category.animeId}`}
+            className=" flex h-[384px] w-[256px] flex-col rounded-lg keen-slider__slide 
+            hover:border-blue-800 hover:border-2 border-1 border-gray-300/20  transition duration-300 ease-in-out"
+          >
+            <span aria-hidden="true" className="absolute inset-0">
+              <Image
+                width={900}
+                height={900}
+                src={category.animeImg}
+                alt=""
+                className="h-full w-full object-cover object-center"
+              />
+            </span>
+            <span
+              aria-hidden="true"
+              className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"
+            />
+            <span className="relative mt-auto text-center text-xl font-bold text-white">
+              {category.animeTitle.length > 20
+                ? category.animeTitle.slice(0, 20) + "..."
+                : category.animeTitle}
+            </span>
+          </a>
+        ))}
       </div>
     </section>
   );

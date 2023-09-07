@@ -3,7 +3,9 @@ import Loader from "@/components/Loader";
 import Recent from "@/components/Recent/Recent";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { BASE_URL } from "@/constant";
+import "keen-slider/keen-slider.min.css";
+import { useKeenSlider } from "keen-slider/react";
+
 const getData = async () => {
   const res = await fetch(`/home`, {
     method: "GET",
@@ -33,6 +35,32 @@ type Data = {
 };
 const Page = () => {
   const [data, setData] = useState<Data | null>(null);
+  
+  
+  const [refs] = useKeenSlider<HTMLDivElement>({
+    breakpoints: {
+      "(min-width: 768px)": {
+        slides: {
+          perView: 4,
+          spacing: 0,
+        },
+        mode: "free-snap",
+      },
+      "(max-width: 767px)": {
+        slides: {
+          perView: 1,
+          spacing: 15,
+        },
+        mode: "free-snap",
+      },
+    },
+    mode: "free-snap",
+    slides: {
+      perView: 5,
+      spacing: 15,
+    },
+  });
+  
   useEffect(() => {
     getData().then((data) => setData(data));
   }, []);
@@ -41,11 +69,11 @@ const Page = () => {
   }
   return (
     <section className="mx-auto max-w-2xl px-4 py-10 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8">
-      <h2 className="text-2xl font-bold tracking-tight text-gray-100">
+      <h2 className="text-2xl font-bold tracking-tight py-5 text-gray-100">
         Recent Release :
       </h2>
 
-      <article className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+      <article ref={refs} className="keen-slider">
         {data.animelist.map((anime) => (
           <Recent
             key={anime.episodeId}

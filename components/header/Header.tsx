@@ -65,16 +65,26 @@ const Header = () => {
 
   return (
     <>
-      <div className="relative isolate overflow-hidden sm:h-screen bg-gray-900 shadow-lg border-b shadow-blue-300/50">
+      <div
+        className="relative isolate overflow-hidden sm:h-screen       
+      bg-gray-90"
+      >
         <Image
           src="/bf.jpg"
           alt=""
           width={1366}
           height={603}
-          className="absolute inset-0 -z-10 h-full lt:h-screen w-full object-cover"
+          className="absolute  -z-10 h-full lt:h-screen w-full 
+          object-cover"
         />
 
-        <div className="px-6 lg:px-8 z-10">
+        <div
+          style={{
+            background:
+              "linear-gradient(0deg, rgb(8, 8, 8) 15%, transparent 100%)",
+          }}
+          className="px-6 lg:px-8 z-10 shadow-md"
+        >
           <nav
             className="flex items-center justify-between pt-6 "
             aria-label="Global"
@@ -85,7 +95,7 @@ const Header = () => {
                   className="font-bold text-2xl
                 uppercase text-gray-100"
                 >
-                  ZEPHYR
+                  ASMODEUS
                 </h1>
               </a>
             </div>
@@ -111,7 +121,7 @@ const Header = () => {
               ))}
             </div>
             <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Search />
+              <Search />
 
               {/* <a
                 href="#"
@@ -155,16 +165,14 @@ const Header = () => {
                     ))}
                   </div>
                   <div className="py-6">
-                  <Search />
-
+                    <Search />
                   </div>
                 </div>
               </div>
             </Dialog.Panel>
           </Dialog>
-          <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+          <div className="mx-auto max-w-3xl py-32 sm:py-48 2xl:py-[23rem] ">
             <div className="text-center">
-            
               <h1 className="text-2xl font-bold tracking-tight uppercase text-white sm:text-6xl">
                 Watch latest animes
               </h1>
@@ -185,14 +193,6 @@ const Header = () => {
             </div>
           </div>
         </div>
-       
-       <Image
-          src="/stacked.svg"
-          alt=""
-          width={1366}
-          height={603}
-          className="absolute inset-0 -z-10 h-full lt:h-screen w-full mix-blend-color opacity-30 backdrop-blur-2xl object-cover"
-        />
       </div>
     </>
   );

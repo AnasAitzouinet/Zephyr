@@ -10,12 +10,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import Search from "@/components/search";
 
-const user = {
-  name: "Tom Cook",
-  email: "tom@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-};
+
 const navigation = [
   { name: "Home", href: "/", current: false },
   { name: "Anime", href: "#", current: false },
@@ -52,8 +47,8 @@ export default function Example({ children }: WatchLayoutProps) {
   };
   return (
     <>
-      <div className="min-h-full">
-        <div className="bg-indigo-60 pb-32">
+      <div className="min-h-screen">
+        <div className=" pb-32">
           <Disclosure
             as="nav"
             className="border-b border-indigo-300 border-opacity-25 bg-indigo-90 backdrop-blur-xl lg:border-none"
@@ -69,7 +64,7 @@ export default function Example({ children }: WatchLayoutProps) {
                             className="font-bold text-2xl
                 uppercase text-gray-100"
                           >
-                            ZEPHYR
+                            ASMODEUS
                           </h1>
                         </a>
                       </div>
@@ -162,17 +157,11 @@ export default function Example({ children }: WatchLayoutProps) {
               </>
             )}
           </Disclosure>
-          {/* <header className="py-10">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <h1 className="text-3xl font-bold tracking-tight text-white">
-                Dashboard
-              </h1>
-            </div>
-          </header> */}
+        
         </div>
 
-        <main className="-mt-32 ">
-          <div className="mx-auto max-w-7xl h-[115vh]  px-4 pb-12 sm:px-6 lg:px-8 ">
+        <main className="-mt-32 bg-[#080808] h-[150vh]">
+          <div className="mx-auto max-w-7xl h-[115vh]  px-4 pb-12 sm:px-6 lg:px-8 bg-[#080808] ">
             {children}
           </div>
         </main>

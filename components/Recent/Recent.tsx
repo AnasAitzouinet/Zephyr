@@ -12,11 +12,11 @@ interface RecentProps {
 }
 const Recent = ({animeId, animeTitle, episodeNum, animeImg, episodeId }: RecentProps) => {
   return (
-    <Link href={`/watch/${episodeId}?anime=${animeId}`} >
-      <Card isFooterBlurred radius="lg" className=" bg-transparent">
+    <Link href={`/watch/${episodeId}?anime=${animeId}`} className="keen-slider__slide -mr-8 ">
+      <Card isFooterBlurred radius="lg" className=" bg-transparent h-[384px] w-[256px] ">
         <Image
-          alt="Woman listing to music"
-          className="object-cover "
+          alt={animeTitle}
+          className="object-cover h-[384px] w-[256px] hover:brightness-50 hover:transition-all hover:duration-500 hover:ease-in-out"
           height={400}
           src={animeImg}
           width={400}
