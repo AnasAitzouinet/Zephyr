@@ -35,14 +35,35 @@ type Data = {
 };
 const Page = () => {
   const [data, setData] = useState<Data | null>(null);
-  
-  
+
   const [refs] = useKeenSlider<HTMLDivElement>({
     breakpoints: {
       "(min-width: 768px)": {
         slides: {
-          perView: 4,
-          spacing: 0,
+          perView: 2,
+          spacing: 10,
+        },
+        mode: "free-snap",
+      },
+      "(min-width: 1024px)": {
+        slides: {
+          perView: 3,
+          spacing: 10,
+        },
+        mode: "free-snap",
+      },
+      "(min-width: 1440px)": {
+
+        slides: {
+          perView: 5,
+          spacing: 10,
+        },
+        mode: "free-snap",
+      },
+      "(min-width: 1920px)": {
+        slides: {
+          perView: 7,
+          spacing: 10,
         },
         mode: "free-snap",
       },
@@ -54,13 +75,8 @@ const Page = () => {
         mode: "free-snap",
       },
     },
-    mode: "free-snap",
-    slides: {
-      perView: 5,
-      spacing: 15,
-    },
   });
-  
+
   useEffect(() => {
     getData().then((data) => setData(data));
   }, []);
@@ -68,12 +84,12 @@ const Page = () => {
     return <Loader />;
   }
   return (
-    <section className="mx-auto max-w-2xl px-4 py-10 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-8">
-      <h2 className="text-2xl font-bold tracking-tight py-5 text-gray-100">
-        Recent Release :
+    <section className="space-y-8">
+      <h2 className="text-2xl font-bold tracking-tight pl-10 md:pl-[12.5rem] pt-20 text-gray-100">
+        Recent Release 
       </h2>
 
-      <article ref={refs} className="keen-slider">
+      <article ref={refs} className="keen-slider pl-4 md:pl-[9rem] lg:pl-[10.5rem] xl:pl-[12rem]">
         {data.animelist.map((anime) => (
           <Recent
             key={anime.episodeId}

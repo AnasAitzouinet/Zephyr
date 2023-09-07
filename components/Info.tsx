@@ -85,11 +85,12 @@ const Info = ({ animeId, epiNum }: { animeId: string; epiNum: String }) => {
     }
   }, [anime]);
 
-  const displaySynopsis = anime && anime.animelist &&
-     (showMore
-      ? anime.animelist.synopsis
-      : anime.animelist.synopsis.substring(0, 100) + " ...")
-    
+  const displaySynopsis =
+    anime && anime.animelist && anime.animelist.synopsis
+      ? showMore
+        ? anime.animelist.synopsis
+        : anime.animelist.synopsis.substring(0, 100) + " ..."
+      : "";
 
   return (
     <>
@@ -106,8 +107,12 @@ const Info = ({ animeId, epiNum }: { animeId: string; epiNum: String }) => {
               - <span className="text-lg text-gray-200">Episode {epiNum} </span>
             </h1>
             <span className="text-gray-300">
-              Genre : {anime.animelist.genres.join(", ")}
+              Genre :{" "}
+              {anime && anime.animelist && anime.animelist.genres
+                ? anime.animelist.genres.join(", ")
+                : ""}
             </span>
+
             <Sheet>
               <SheetTrigger asChild>
                 <button
@@ -129,15 +134,18 @@ const Info = ({ animeId, epiNum }: { animeId: string; epiNum: String }) => {
                   </SheetTitle>
                   <SheetDescription>
                     Synopsis: {displaySynopsis}
-                    {anime.animelist.synopsis.length > 100 && (
-                      <a href="#" onClick={toggleSynopsis}>
-                        {showMore ? (
-                          <span className="text-blue-500"> Read Less</span>
-                        ) : (
-                          <span className="text-green-500"> Read More</span>
-                        )}
-                      </a>
-                    )}
+                    {anime &&
+                      anime.animelist &&
+                      anime.animelist.synopsis &&
+                      anime.animelist.synopsis.length > 100 && (
+                        <a href="#" onClick={toggleSynopsis}>
+                          {showMore ? (
+                            <span className="text-blue-500"> Read Less</span>
+                          ) : (
+                            <span className="text-blue-500"> Read More</span>
+                          )}
+                        </a>
+                      )}
                   </SheetDescription>
                   <Separator className="w-1/2 mx-auto bg-white " />
                   <h2

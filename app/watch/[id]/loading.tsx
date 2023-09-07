@@ -3,7 +3,7 @@ import Loader from '@/components/Loader'
 
 const Loading = () => {
   return (
-    <div className='overflow-hidden'>
+    <div>
         <Loader/>
     </div>
   )

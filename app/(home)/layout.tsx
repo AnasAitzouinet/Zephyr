@@ -15,17 +15,24 @@ interface HomeLayoutProps {
 }
 
 export default function HomeLayout({ children }: HomeLayoutProps) {
+  const [loading, setLoading] = React.useState(true);
+  setTimeout(() => {
+    setLoading(false);
+  }, 3000);
   return (
     <main>
-      <Header />
-      <section>
-        <Suspense fallback={<Loader />}>
-          <Popular />
-          <NextUIProvider>{children}</NextUIProvider>
-          <TrendingSlider TRENDING_SLIDER_NUMBERS={TRENDING_SLIDER_NUMBERS} />
-
-        </Suspense>
-      </section>
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+          <Header />
+          <section>
+            <Popular />
+            <NextUIProvider>{children}</NextUIProvider>
+            <TrendingSlider TRENDING_SLIDER_NUMBERS={TRENDING_SLIDER_NUMBERS} />
+            </section>
+          </>
+        )}
     </main>
   );
 }

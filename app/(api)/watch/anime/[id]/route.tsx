@@ -15,8 +15,8 @@ export async function GET(
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const animelist = await response.json();
-      // console.log(animelist.Referer);
-    return NextResponse.json(animelist.Referer);
+      console.log(animelist);
+    return NextResponse.json(animelist);
   } catch (error) {
     console.error("Error:", error);
     throw error;

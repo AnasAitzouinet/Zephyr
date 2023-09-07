@@ -10,6 +10,7 @@ import { ShieldCheckIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { BASE_URL } from "@/constant";
+import Loader from "@/components/Loader";
 
 const product = {
   name: "Everyday Ruck Snack",
@@ -85,7 +86,7 @@ export default function AnimeInfo({ params }: { params: { animeId: string } }) {
     getAnime({ animeId }).then((data) => setAnime(data));
   }, [animeId]);
   if (!anime) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   const displaySynopsis = showMore

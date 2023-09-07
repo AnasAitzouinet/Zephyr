@@ -78,14 +78,15 @@ const Popular = () => {
           perView: 4,
           spacing: 5,
         },
-        mode: "free-snap",
+        mode: "free",
       },
       "(max-width: 767px)": {
         slides: {
-          perView: 2,
-          spacing: 5,
+          origin: "center",
+          perView: 1,
+          spacing: 0,
         },
-        mode: "free-snap",
+        mode: "snap",
       },
     },
     mode: "free-snap",
@@ -100,8 +101,11 @@ const Popular = () => {
   }
 
   return (
-    <section className="py-5 sm:py-10 xl:mx-auto xl:max-w-7xl xl:px-8">
-      <div className="px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 xl:px-0">
+    <section
+     
+      className=" "
+    >
+      <div className="text-2xl font-bold tracking-tight pl-10 md:pl-[12.5rem] pt-20 text-gray-100">
         <h2
           id="category-heading"
           className="text-2xl font-bold tracking-tight text-gray-100"
@@ -109,21 +113,25 @@ const Popular = () => {
           Popular
         </h2>
       </div>
-      <div ref={ref} className="keen-slider py-5 ">
+      <div
+        
+        ref={ref}
+        className="keen-slider py-5 pl-10 md:pl-[12.5rem]"
+      >
         {data.animelist.map((category) => (
           <a
             key={category.animeId}
             href={`/AnimeInfo/${category.animeId}`}
-            className=" flex h-[384px] w-[256px] flex-col rounded-lg keen-slider__slide 
+            className=" flex h-[384px] w-[256px] flex-col rounded-xl keen-slider__slide 
             hover:border-blue-800 hover:border-2 border-1 border-gray-300/20  transition duration-300 ease-in-out"
           >
             <span aria-hidden="true" className="absolute inset-0">
               <Image
-                width={900}
-                height={900}
+                width={1000}
+                height={1000}
                 src={category.animeImg}
                 alt=""
-                className="h-full w-full object-cover object-center"
+                className="h-full w-full object-cover object-center bg-gt"
               />
             </span>
             <span
