@@ -1,5 +1,5 @@
 "use client"
-const page = () => {
+const Loader = () => {
   return (
     <div className="bg-[#080808] h-[110vh] w-auto gap-2 flex flex-row justify-center items-center overflow-hidden">
       <img src="/lg.svg"  alt="asmodeus logo" />
@@ -12,4 +12,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Loader;

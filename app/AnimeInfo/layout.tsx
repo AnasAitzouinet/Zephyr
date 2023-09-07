@@ -8,7 +8,7 @@ import { Fragment, useState } from "react";
 import { Menu, Popover, Transition, Disclosure } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
-
+import { useRouter } from "next/navigation";
 const user = {
   name: "Tom Cook",
   email: "tom@example.com",
@@ -32,22 +32,12 @@ function classNames(...classes: any[]) {
 
 export default function Example({ children }: WatchLayoutProps) {
   const [search, setSearch] = useState<String>("");
+  const router = useRouter();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await fetch(`/search`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(search),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        alert(JSON.stringify(data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if(search === "") return;
+    router.push(`/SearchPage?for=${search}`)
+  
   };
   return (
     <>

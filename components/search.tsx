@@ -1,27 +1,17 @@
 "use client";
-import UseAnimations from "react-useanimations";
-import searchToX from "react-useanimations/lib/searchToX";
+
 import React from "react";
 import { MagnifyingGlassCircleIcon } from "@heroicons/react/20/solid"; 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 const Search = () => {
   const [search, setSearch] = useState<String>("");
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const router = useRouter()
+  const handleSubmit =  (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await fetch(`/search`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(search),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        alert(JSON.stringify(data));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if(search === "") return;
+    router.push(`/SearchPage?for=${search}`)
+  
   };
   return (
     <div className="flex relative ">

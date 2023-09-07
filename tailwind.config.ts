@@ -24,6 +24,9 @@ const config: Config = {
       },
     },
   },
-  plugins: [nextui(), require("@tailwindcss/forms")],
+  plugins: [nextui(), require("@tailwindcss/forms"),
+  require('@tailwindcss/aspect-ratio'),
+
+  ],
 };
 export default config;

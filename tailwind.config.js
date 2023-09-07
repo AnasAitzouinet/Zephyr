@@ -85,5 +85,7 @@ module.exports = {
     require("tailwindcss-animate"),
     nextui(),
     require("@tailwindcss/forms"),
+    require('@tailwindcss/aspect-ratio'),
+
   ],
 };

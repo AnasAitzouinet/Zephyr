@@ -91,12 +91,11 @@ const Header = () => {
           >
             <div className="flex lg:flex-1">
               <a href="/" className="-m-1.5 p-1.5">
-                <h1
-                  className="font-bold text-2xl
-                uppercase text-gray-100"
-                >
-                  ASMODEUS
-                </h1>
+              <img
+                className="h-8 w-auto sm:pb-5 text-center sm:h-12"
+                src="/lg.svg"
+                alt="Workflow"
+              />
               </a>
             </div>
             <div className="flex lg:hidden">
@@ -135,12 +134,11 @@ const Header = () => {
             <Dialog.Panel className="fixed inset-0 z-10 overflow-y-auto bg-gray-900 px-6 py-6 lg:hidden">
               <div className="flex items-center justify-between">
                 <a href="/" className="-m-1.5 p-1.5">
-                  <h1
-                    className="font-bold text-2xl
-                uppercase text-gray-100"
-                  >
-                    ZEPHYR
-                  </h1>
+                <img
+                className="h-8 w-auto sm:pb-5 text-center sm:h-12"
+                src="/lg.svg"
+                alt="Workflow"
+              />
                 </a>
                 <button
                   type="button"
@@ -182,7 +180,7 @@ const Header = () => {
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <a
-                  href="#"
+                  href="#recent"
                   className="bg-black/20 hover:bg-white/40 hover:transition-all 
                   duration:500 ease-in-out hover:text-black uppercase font-semibold
                   border-white/20 border-1 px-20 py-2 rounded-full  text-white"
