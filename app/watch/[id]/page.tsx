@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Info from "@/components/Info";
 import Loader from "@/components/Loader";
-import {BASE_URL} from "@/constant"; 
+import { BASE_URL } from "@/constant";
 const getReferrer = async ({ id }: { id: string }) => {
   const res = await fetch(`/watch/anime/${id}`, {
     method: "GET",
@@ -20,24 +20,25 @@ const getReferrer = async ({ id }: { id: string }) => {
   return res.json();
 };
 type AnimeData = {
-  Referer: string;
+  headers: {
+    Referer: string;
+  };
 };
 
 const Page = ({ params }: { params: { id: string } }) => {
-  //  const animeId = useSearchParams().get("anime");
-  const animeId = params.id.split("-episode")[0];
-  const epiNum = params.id.split("-episode-")[1];
-  
+  const animeId = useSearchParams().get("animeID");
+  const episodeNumber = useSearchParams().get("episodeNumber");
   const [data, setData] = useState<AnimeData | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
     setLoading(true);
     getReferrer({ id: params.id }).then((data) => {
       setData(data);
     });
   }, [params.id]);
-  if(!data){
-    return <Loader />
+  if (!data) {
+    return <Loader />;
   }
   return (
     <>
@@ -45,9 +46,9 @@ const Page = ({ params }: { params: { id: string } }) => {
         <Loader />
       ) : (
         <>
-          <Info animeId={animeId} epiNum={epiNum} />
+          <Info animeId={animeId} epiNum={params.id}  episodeNumber={episodeNumber}/>
           <iframe
-            src={data.Referer}
+            src={data.headers.Referer}
             width="100%"
             loading="eager"
             height="100%"

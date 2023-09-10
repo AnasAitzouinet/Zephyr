@@ -18,23 +18,38 @@ const getData = async () => {
     // cache: "no-cache",
   });
   if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    alert("an error occured while fetching data")
   }
   return res.json();
 };
-type Data = {
+type AnimeList = {
   animelist: {
-    animeId: string;
-    episodeId: string;
-    animeTitle: string;
-    episodeNum: number;
-    subOrDub: "SUB" | "DUB";
-    animeImg: string;
-    episodeUrl: string;
-  }[];
+    currentPage: number;
+    hasNextPage: boolean;
+    totalPages: number;
+    totalResults: number;
+    results: {
+      id: string;
+      malId: number;
+      title: {
+        romaji: string;
+        english: string | null;
+        native: string;
+        userPreferred: string;
+      };
+      image: string;
+      rating: number;
+      color: string;
+      episodeId: string;
+      episodeTitle: string;
+      episodeNumber: number;
+      genres: string[];
+      type: string;
+    }[];
+  };
 };
 const Page = () => {
-  const [data, setData] = useState<Data | null>(null);
+  const [data, setData] = useState<AnimeList | null>(null);
 
   const [refs] = useKeenSlider<HTMLDivElement>({
     breakpoints: {
@@ -55,7 +70,7 @@ const Page = () => {
       "(min-width: 1440px)": {
 
         slides: {
-          perView: 5,
+          perView: 6,
           spacing: 10,
         },
         mode: "free-snap",
@@ -90,14 +105,14 @@ const Page = () => {
       </h2>
 
       <article ref={refs} className="keen-slider pl-4 md:pl-[9rem] lg:pl-[10.5rem] xl:pl-[12rem]">
-        {data.animelist.map((anime) => (
+        {data.animelist.results.map((anime) => (
           <Recent
             key={anime.episodeId}
-            animeId={anime.animeId}
+            animeId={anime.id}
             episodeId={anime.episodeId}
-            animeTitle={anime.animeTitle}
-            episodeNum={anime.episodeNum}
-            animeImg={anime.animeImg}
+            animeTitle={anime.title.userPreferred}
+            episodeNum={anime.episodeNumber}
+            animeImg={anime.image}
           />
         ))}
       </article>

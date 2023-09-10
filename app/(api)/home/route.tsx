@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const response = await fetch(`${process.env.NEXT_API}/recent-release?apiKey=${process.env.API_KEY}`, {
+    const response = await fetch(`${process.env.NEXT_API_ANI}/meta/anilist/recent-episodes`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -18,7 +18,7 @@ export async function GET() {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const animelist = await response.json();
-    //   console.log(animelist);
+      console.log(animelist);
     return NextResponse.json({animelist});
   } catch (error) {
     console.error("Error:", error);

@@ -5,7 +5,7 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const response = await fetch(`${process.env.NEXT_API}/vidcdn/watch/${params.id}?apiKey=${process.env.API_KEY}`, {
+    const response = await fetch(`${process.env.NEXT_API_ANI}/meta/anilist/watch/${params.id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
